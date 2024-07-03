@@ -6,6 +6,7 @@ import { Separator } from "./ui/separator";
 
 export const Header = () => {
   return (
+    // <header className="h-16 border-b border-black-100 flex items-center justify-between px-8">
     <header className="h-16 border-b border-black-100 flex items-center justify-between px-8">
       {/* brand */}
 
