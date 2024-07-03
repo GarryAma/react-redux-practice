@@ -20,9 +20,24 @@ function App() {
         </div>
 
         <div className="grid grid-cols-3 gap-3">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard
+            image="https://m.media-amazon.com/images/I/51ulmT3YUZL._AC_UY1000_.jpg"
+            name="blue t-shirt"
+            price={75}
+            stock={0}
+          />
+          <ProductCard
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS28Jszaym5PO0SynGkapNxDSvGTfFmHpv7kv74Es0oR5v6t151TJxT2mk6UBhu13hhtqw&usqp=CAU"
+            name="black t-shirt"
+            price={65}
+            stock={3}
+          />
+          <ProductCard
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUk1P8ppG_wGRgiuVe8DnXG1iDhyokiZQzdg&s"
+            name="red t-shirt"
+            price={55}
+            stock={3}
+          />
         </div>
       </main>
       <Footer />
