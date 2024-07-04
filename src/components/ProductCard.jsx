@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { TestButton } from "./TestButton";
 
 export const ProductCard = ({ image, name, price, stock }) => {
   const [quantity, setQuantity] = useState(0);
