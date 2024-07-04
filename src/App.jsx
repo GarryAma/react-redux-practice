@@ -24,7 +24,7 @@ function App() {
         "https://prd-static.sf-cdn.com/resources/images/store/2015/global/1140x1140/ANZ/Photo-Gifts/tshirts-kids-white-donut-1140x1140.jpg",
       name: "white donuts t-shirt",
       price: 55,
-      stock: 5,
+      stock: 0,
     },
   ];
   const arrayOfJsx = data.map((singleData) => (

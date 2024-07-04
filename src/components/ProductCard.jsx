@@ -6,7 +6,7 @@ import { TestButton } from "./TestButton";
 export const ProductCard = ({ image, name, price, stock }) => {
   const [quantity, setQuantity] = useState(0);
   const [message, setMessage] = useState("add to cart");
-  const [isAdded, setIsAdded] = useState(true);
+  // const [isAdded, setIsAdded] = useState(true);
 
   const increaseQuantity = () => {
     if (quantity < stock) setQuantity((prev) => prev + 1);
@@ -57,8 +57,9 @@ export const ProductCard = ({ image, name, price, stock }) => {
           <Button
             onClick={() => setIsAdded((prev) => !prev)}
             className="w-full"
+            disabled={!stock}
           >
-            {isAdded === true ? "remove from cart" : "add to cart"}
+            {stock > 0 ? "add to cart" : "out of stock"}
           </Button>
         </div>
       </div>

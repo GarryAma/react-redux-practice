@@ -10,7 +10,7 @@ export const Header = () => {
     <header className="h-16 border-b border-black-100 flex items-center justify-between px-8">
       {/* brand */}
 
-      <p className="font-bold text-xl hover:cursor-pointer">Shope | ecomm</p>
+      <p className="font-bold text-md hover:cursor-pointer">Shope | ecomm</p>
 
       {/* search-bar */}
       <Input className="max-w-[400px]" placeholder="search products..." />
