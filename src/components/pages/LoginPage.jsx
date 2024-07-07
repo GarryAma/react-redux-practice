@@ -18,55 +18,99 @@ export const LoginPage = () => {
   const [errorUsernameMessage, setErrorUsernameMassage] = useState("");
   const [errorPasswordMessage, setErrorPasswordMassage] = useState("");
 
-  const handleOnSubmit = () => {};
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    const usernameIsValid = username.length >= 3;
+    const passwordIsValid = password.length >= 8;
+
+    if (!usernameIsValid) {
+      alert("username need at least 3 characters or more");
+      return;
+    }
+
+    if (!passwordIsValid) {
+      alert("password need at least 8 characters or more");
+      return;
+    }
+
+    alert("success");
+  };
 
   return (
-    <div className="px-4 container py-8 flex flex-col justify-center items-center max-w-screen-md h-[90vh]">
-      <Card className="w-full max-w-[540px]">
-        <CardHeader>
-          <CardTitle>Welcome back ...</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div>
-            <Label htmlFor="username">Username : </Label>
-            <Input
-              onChange={(event) => {
-                setUsername(event.target.value);
-              }}
-              id="username"
-            />
-          </div>
-          <div>
-            <Label htmlFor="password">Password : </Label>
-            <Input
-              onChange={(event) => setPassword(event.target.value)}
-              type={isChecked ? "text" : "password"}
-              id="password"
-            />
-            <p className="text-xs text-gray-500">{errorPasswordMessage}</p>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Label htmlFor="show password">Show Password:</Label>
-            <Checkbox
-              id="show password"
-              onCheckedChange={(current) => {
-                setIsCheched(current);
-              }}
-            />
-          </div>
-        </CardContent>
-        <CardFooter>
-          <div className="flex flex-col space-y-4 w-full">
-            <Button onClick={handleOnSubmit}>Login</Button>
-            <Button
-              variant="link"
-              className="hover:font-light hover:text-green-900"
-            >
-              Sign up
-            </Button>
-          </div>
-        </CardFooter>
-      </Card>
-    </div>
+    <main className="px-4 container py-8 flex flex-col justify-center items-center max-w-screen-md h-[90vh]">
+      <form className="w-full max-w-[540px]" onSubmit={handleOnSubmit}>
+        <Card>
+          <CardHeader>
+            <CardTitle>Welcome back ...</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="username">Username : </Label>
+              <Input
+                onChange={(event) => {
+                  if (event.target.value.length < 3) {
+                    setErrorUsernameMassage(
+                      "• username need at least 3 characters or more"
+                    );
+                  } else {
+                    setErrorUsernameMassage("");
+                  }
+                  setUsername(event.target.value);
+                }}
+                id="username"
+              />
+              {errorUsernameMessage && (
+                <p className="text-xs  text-red-700">{errorUsernameMessage}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password : </Label>
+              <Input
+                onChange={(event) => {
+                  if (event.target.value.length < 8) {
+                    setErrorPasswordMassage(
+                      "• password need at least 8 characters or more"
+                    );
+                  } else {
+                    setErrorPasswordMassage("");
+                  }
+                  setPassword(event.target.value);
+                }}
+                type={isChecked ? "text" : "password"}
+                id="password"
+              />
+              {errorPasswordMessage && (
+                <p className="text-xs text-red-700">{errorPasswordMessage}</p>
+              )}
+            </div>
+            <div className="flex items-center space-x-2">
+              <Label htmlFor="show password">Show Password:</Label>
+              <Checkbox
+                id="show password"
+                onCheckedChange={(current) => {
+                  setIsCheched(current);
+                }}
+              />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <div className="flex flex-col space-y-4 w-full">
+              <Button
+                type="submit"
+                disabled={username.length < 3 || password.length < 8}
+              >
+                Login
+              </Button>
+              <Button
+                variant="link"
+                className="hover:font-light hover:text-green-900"
+              >
+                Sign up
+              </Button>
+            </div>
+          </CardFooter>
+        </Card>
+      </form>
+    </main>
   );
 };
