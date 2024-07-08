@@ -44,7 +44,7 @@ export const LoginPage = () => {
             <CardTitle>Welcome back ...</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="username">Username : </Label>
               <Input
                 onChange={(event) => {
@@ -63,7 +63,7 @@ export const LoginPage = () => {
                 <p className="text-xs  text-red-700">{errorUsernameMessage}</p>
               )}
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="password">Password : </Label>
               <Input
                 onChange={(event) => {
