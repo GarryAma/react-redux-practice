@@ -20,15 +20,28 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const loginFormSchema = z.object({
+  username: z
+    .string()
+    .min(3, "Your username is under 3 chars")
+    .max(10, "your username is over 10 chars"),
+
+  password: z.string().min(8, "Your password is incorrect"),
+});
 
 export const LoginPageReactHookForm = () => {
   const [isChecked, setIsCheched] = useState(false);
 
   const form = useForm({
     defaultValues: {
-      username: " ",
+      username: "",
       password: "",
     },
+    resolver: zodResolver(loginFormSchema),
+    reValidateMode: "onSubmit",
   });
 
   // console.log(form);
@@ -58,6 +71,9 @@ export const LoginPageReactHookForm = () => {
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
+                    <FormDescription>
+                      <li>username must between 3 and 10 chars</li>
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -66,7 +82,7 @@ export const LoginPageReactHookForm = () => {
                 control={form.control}
                 name="password"
                 render={(jajal) => {
-                  console.log(jajal);
+                  // console.log(jajal);
                   return (
                     <FormItem>
                       <FormLabel>Password :</FormLabel>
@@ -76,6 +92,9 @@ export const LoginPageReactHookForm = () => {
                           {...jajal.field}
                         />
                       </FormControl>
+                      <FormDescription>
+                        <li>password must be 8 chars or more</li>
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   );
@@ -93,6 +112,7 @@ export const LoginPageReactHookForm = () => {
             </CardContent>
             <CardFooter>
               <div className="flex flex-col space-y-4 w-full">
+                {/* disabled={!form.formState.isValid}  */}
                 <Button type="submit">Login</Button>
                 <Button
                   variant="link"
