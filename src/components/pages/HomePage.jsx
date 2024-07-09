@@ -1,49 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ProductCard } from "../ProductCard";
 import axios from "axios";
 import { axiosInstance } from "@/lib/axios";
+import { Button } from "../ui/button";
+import { Spinner } from "../Spinner";
 
 export const HomePage = () => {
-  const data = [
-    {
-      image: "https://m.media-amazon.com/images/I/51ulmT3YUZL._AC_UY1000_.jpg",
-      name: "blue t-shirt",
-      price: 75,
-      stock: 10,
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSpiqlPwMHWran3BK5ddkXf1JgPTKAJ-vP-K2Hp6vdk97krJjOXMgP7pn3C4j79b8yrhwqW9FPqaJBlCSB5q7QSba2JIPB1lme6DWrfWSp4v1UwChJdC1mpIg&usqp=CAE",
-      name: "gray t-shirt",
-      price: 65,
-      stock: 7,
-    },
-    {
-      image:
-        "https://prd-static.sf-cdn.com/resources/images/store/2015/global/1140x1140/ANZ/Photo-Gifts/tshirts-kids-white-donut-1140x1140.jpg",
-      name: "white donuts t-shirt",
-      price: 55,
-      stock: 0,
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
+
+  // fetch products data once when home page is first mounted
+  useEffect(() => {
+    fetchProducts();
+    console.log("useEffect runs");
+  }, []);
 
   const fetchProducts = async () => {
-    // fetch("http://localhost:8000/products")
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data))
-    //   .catch((err) => console.log(err.message));
-
+    setIsloading(true);
     try {
       const fetched = await axiosInstance.get("/products");
       console.log(fetched.data);
+      setProducts(fetched.data);
     } catch (error) {
       console.log(error.message);
+    } finally {
+      setIsloading(false);
     }
   };
 
-  fetchProducts();
-
-  const arrayOfJsx = data.map((singleData) => (
+  //array of jsx -> array contains jsx's/components, if rendered, the "[" and "]" isnt included/gone
+  const arrayOfJsx = products.map((singleData) => (
     <ProductCard
       image={singleData.image}
       name={singleData.name}
@@ -51,6 +37,9 @@ export const HomePage = () => {
       stock={singleData.stock}
     />
   ));
+
+  console.log("inside component runs");
+
   return (
     <>
       {/* <Header /> */}
@@ -64,9 +53,13 @@ export const HomePage = () => {
             confidence throughout your days
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3">
-          {arrayOfJsx}
-        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3">
+            {arrayOfJsx}
+          </div>
+        )}
       </main>
       {/* <Footer /> */}
     </>

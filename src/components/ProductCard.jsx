@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
 export const ProductCard = ({ image, name, price, stock }) => {
   const [quantity, setQuantity] = useState(0);
-  const [message, setMessage] = useState("add to cart");
-  // const [isAdded, setIsAdded] = useState(true);
 
   const increaseQuantity = () => {
     if (quantity < stock) setQuantity((prev) => prev + 1);
@@ -16,7 +14,24 @@ export const ProductCard = ({ image, name, price, stock }) => {
     if (quantity > 0) setQuantity((prev) => prev - 1);
     return;
   };
+  //-----------------------------------------------------------------
+  // //DID MOUNT!!
+  // useEffect(() => {
+  //   alert("component did mount");
+  // }, []);
 
+  // //DID UPDATE together with MOUNT(default behavior)
+  // useEffect(() => {
+  //   alert("component did update");
+  // }, [quantity]);
+
+  // //DID UNMOUNT
+  // useEffect(() => {
+  //   return () => {
+  //     alert("component unmount");
+  //   };
+  // }, []);
+  //-----------------------------------------------------------------
   return (
     <div className="p-4 border rounded-md md:max-w-96 flex flex-col gap-4">
       <div className="aspect-square w-full overflow-hidden rounded-md">
