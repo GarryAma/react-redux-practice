@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import { NotFoundPage } from "./components/pages/NotFoundPage";
 import { LoginPage } from "./components/pages/LoginPage";
 import { LoginPageReactHookForm } from "./components/pages/LoginPageReactHookForm";
+import { ProductDetailsPage } from "./components/pages/ProductDetailsPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPageReactHookForm />} />
+        <Route path="/product/details" element={<ProductDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

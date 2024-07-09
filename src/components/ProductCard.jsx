@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({ image, name, price, stock }) => {
   const [quantity, setQuantity] = useState(0);
@@ -34,16 +35,21 @@ export const ProductCard = ({ image, name, price, stock }) => {
   //-----------------------------------------------------------------
   return (
     <div className="p-4 border rounded-md md:max-w-96 flex flex-col gap-4">
-      <div className="aspect-square w-full overflow-hidden rounded-md">
+      <Link
+        Link
+        to="/product/details"
+        className="aspect-square w-full overflow-hidden rounded-md"
+      >
         <img className="w-full" src={image} alt=" product" />
-      </div>
-      <div>
+      </Link>
+
+      <Link to="/product/details">
         <p className="text-md">{name}</p>
         <p className="text-xl font-semibold">
           {price.toLocaleString("id-AU")} AUD
         </p>
         <p className="text-muted-foreground">In-stock:{stock}</p>
-      </div>
+      </Link>
       <div className="flex flex-col gap-4">
         {/* button quantity */}
         <div className="flex justify-between items-center">
