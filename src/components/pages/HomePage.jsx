@@ -1,5 +1,7 @@
 import React from "react";
 import { ProductCard } from "../ProductCard";
+import axios from "axios";
+import { axiosInstance } from "@/lib/axios";
 
 export const HomePage = () => {
   const data = [
@@ -24,6 +26,23 @@ export const HomePage = () => {
       stock: 0,
     },
   ];
+
+  const fetchProducts = async () => {
+    // fetch("http://localhost:8000/products")
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err.message));
+
+    try {
+      const fetched = await axiosInstance.get("/products");
+      console.log(fetched.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  fetchProducts();
+
   const arrayOfJsx = data.map((singleData) => (
     <ProductCard
       image={singleData.image}

@@ -4,19 +4,22 @@
       "image": "https://m.media-amazon.com/images/I/51ulmT3YUZL._AC_UY1000_.jpg",
       "name": "blue t-shirt",
       "price": 75,
-      "stock": 10
+      "stock": 10,
+      "id": 1
     },
     {
       "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSpiqlPwMHWran3BK5ddkXf1JgPTKAJ-vP-K2Hp6vdk97krJjOXMgP7pn3C4j79b8yrhwqW9FPqaJBlCSB5q7QSba2JIPB1lme6DWrfWSp4v1UwChJdC1mpIg&usqp=CAE",
       "name": "gray t-shirt",
       "price": 65,
-      "stock": 7
+      "stock": 7,
+      "id": 2
     },
     {
       "image": "https://prd-static.sf-cdn.com/resources/images/store/2015/global/1140x1140/ANZ/Photo-Gifts/tshirts-kids-white-donut-1140x1140.jpg",
       "name": "white donuts t-shirt",
       "price": 55,
-      "stock": 0
+      "stock": 0,
+      "id": 3
     }
   ]
 }
