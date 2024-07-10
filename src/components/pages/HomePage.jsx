@@ -12,7 +12,7 @@ export const HomePage = () => {
   // fetch products data once when home page is first mounted
   useEffect(() => {
     fetchProducts();
-    console.log("useEffect runs");
+    // console.log("useEffect runs");
   }, []);
 
   const fetchProducts = async () => {
@@ -31,6 +31,7 @@ export const HomePage = () => {
   //array of jsx -> array contains jsx's/components, if rendered, the "[" and "]" isnt included/gone
   const arrayOfJsx = products.map((singleData) => (
     <ProductCard
+      id={singleData.id}
       image={singleData.image}
       name={singleData.name}
       price={singleData.price}
@@ -38,7 +39,7 @@ export const HomePage = () => {
     />
   ));
 
-  console.log("inside component runs");
+  // console.log("inside component runs");
 
   return (
     <>

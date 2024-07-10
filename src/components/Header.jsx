@@ -9,14 +9,12 @@ export const Header = () => {
   return (
     // <header className="h-16 border-b border-black-100 flex items-center justify-between px-8">
     <header className="h-16 border-b border-black-100 flex items-center justify-between px-8">
-      {/* brand */}
+      <p className="font-bold text-bold hover:cursor-pointer hover:text-slate-500 transition-all ease-in-out">
+        Shope | ecomm
+      </p>
 
-      <p className="font-bold text-bold hover:cursor-pointer">Shope | ecomm</p>
-
-      {/* search-bar */}
       <Input className="max-w-[400px]" placeholder="search products..." />
 
-      {/* button */}
       <div className="flex space-x-4 h-5 items-center">
         <div className="flex space-x-2">
           <Link to="/cart">

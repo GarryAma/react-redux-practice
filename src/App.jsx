@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPageReactHookForm />} />
-        <Route path="/product/details" element={<ProductDetailsPage />} />
+        <Route path="/product/:productId" element={<ProductDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
