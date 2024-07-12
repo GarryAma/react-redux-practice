@@ -4,6 +4,7 @@ import axios from "axios";
 import { axiosInstance } from "@/lib/axios";
 import { Button } from "../ui/button";
 import { Spinner } from "../Spinner";
+import { Skeleton } from "../ui/skeleton";
 
 export const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -19,7 +20,7 @@ export const HomePage = () => {
     setIsloading(true);
     try {
       const fetched = await axiosInstance.get("/products");
-      console.log(fetched.data);
+      // console.log(fetched.data);
       setProducts(fetched.data);
     } catch (error) {
       console.log(error.message);
@@ -45,6 +46,7 @@ export const HomePage = () => {
     <>
       {/* <Header /> */}
       <main className=" min-h-[90vh]  max-w-screen-md mx-auto px-4 mt-8 ">
+        <Skeleton className="w-[300px] h-[50px]" />
         <div className="pb-20 mx-auto text-center flex flex-col items center max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Become a Trend with us

@@ -36,19 +36,20 @@ export const ProductCard = ({ image, name, price, stock, id }) => {
   return (
     <div className="p-4 border rounded-md md:max-w-96 flex flex-col gap-4">
       <Link
-        to={`/product/${id}`}
+        to={`/products/${id}`}
         className="aspect-square w-full overflow-hidden rounded-md"
       >
         <img className="w-full" src={image} alt=" product" />
       </Link>
 
-      <Link to={`/product/${id}`}>
+      <Link to={`/products/${id}`}>
         <p className="text-md">{name}</p>
         <p className="text-xl font-semibold">
           {price.toLocaleString("id-AU")} AUD
         </p>
         <p className="text-muted-foreground">In-stock : {stock}</p>
       </Link>
+
       <div className="flex flex-col gap-4">
         {/* button quantity */}
         <div className="flex sm:justify-between justify-evenly items-center">
