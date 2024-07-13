@@ -46,7 +46,6 @@ export const HomePage = () => {
     <>
       {/* <Header /> */}
       <main className=" min-h-[90vh]  max-w-screen-md mx-auto px-4 mt-8 ">
-        <Skeleton className="w-[300px] h-[50px]" />
         <div className="pb-20 mx-auto text-center flex flex-col items center max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Become a Trend with us

@@ -74,7 +74,7 @@ export const ProductDetailsPage = () => {
       {isLoading ? (
         <ProductDetailSkeleton />
       ) : (
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-2 grid-rows-2 gap-8">
           <img
             src={product?.image}
             alt={product?.name}
