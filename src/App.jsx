@@ -11,6 +11,7 @@ import { ProductManagementPage } from "./components/pages/admin/ProductManagemen
 
 function App() {
   const { pathname } = useLocation();
+  // console.log(pathname);
   return (
     <>
       {!pathname.startsWith("/admin") ? <Header /> : null}
