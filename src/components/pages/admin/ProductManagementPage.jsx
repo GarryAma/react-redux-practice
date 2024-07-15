@@ -21,13 +21,16 @@ import { useSearchParams } from "react-router-dom";
 
 export const ProductManagementPage = () => {
   const [products, setProducts] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams({ halaman: 1 });
-  console.log(searchParams.get("halaman"));
+  const [searchParams, setSearchParams] = useSearchParams();
+  // console.log(searchParams.get("halaman"));
+  const [hasNextPage, setHasNextPage] = useState(false);
+  // console.log(hasNextPage);
 
   // console.log("this render");
 
   const handleNextPage = () => {
     searchParams.set("halaman", Number(searchParams.get("halaman")) + 1);
+    // console.log(searchParams.get("halaman"));
     setSearchParams(searchParams);
   };
 
@@ -52,6 +55,7 @@ export const ProductManagementPage = () => {
         },
       });
       // console.log(response.data);
+      setHasNextPage(Boolean(response.data.next));
       setProducts(response.data.data);
     } catch (error) {
       console.log(error.message);
@@ -60,6 +64,10 @@ export const ProductManagementPage = () => {
 
   useEffect(() => {
     // console.log("di useEffect jalan");
+    if (!searchParams.get("halaman")) {
+      searchParams.set("halaman", 1);
+      setSearchParams(searchParams);
+    }
     fetchProducts();
   }, [searchParams.get("halaman")]);
 
@@ -116,7 +124,11 @@ export const ProductManagementPage = () => {
         <Pagination className={"mt-8"}>
           <PaginationContent>
             <PaginationItem>
-              <Button onClick={handlePreviousPage} variant="ghost">
+              <Button
+                disabled={searchParams.get("halaman") == 1}
+                onClick={handlePreviousPage}
+                variant="ghost"
+              >
                 <ChevronLeft className="w-4 h-4 mr-2" />
                 Previous
               </Button>
@@ -125,7 +137,11 @@ export const ProductManagementPage = () => {
               Page {searchParams.get("halaman")}
             </PaginationItem>
             <PaginationItem>
-              <Button onClick={handleNextPage} variant="ghost">
+              <Button
+                disabled={!hasNextPage}
+                onClick={handleNextPage}
+                variant="ghost"
+              >
                 Next
                 <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
