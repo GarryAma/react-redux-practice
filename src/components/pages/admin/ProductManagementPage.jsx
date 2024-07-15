@@ -18,7 +18,13 @@ export const ProductManagementPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axiosInstance.get("/products");
+      // const response = await axiosInstance.get("/products?_limit=5");
+      const response = await axiosInstance.get("/products", {
+        params: {
+          _limit: 5,
+          // _page: 1,
+        },
+      });
       setProducts(response.data);
     } catch (error) {
       console.log(error.message);
@@ -26,14 +32,14 @@ export const ProductManagementPage = () => {
   };
 
   useEffect(() => {
-    console.log("di useEffect jalan");
+    // console.log("di useEffect jalan");
     fetchProducts();
   }, []);
 
   return (
     <>
-      {console.log(products)}
-      {console.log("di return jsx jalan")}
+      {/* {console.log(products)}
+      {console.log("di return jsx jalan")} */}
       <AdminLayout
         title="Products Management"
         description="Manage our products"
@@ -45,8 +51,8 @@ export const ProductManagementPage = () => {
         }
       >
         <Table className="p-2 border border-collapse rounded-md">
-          {console.log("inside table jalan")}
-          {console.log(products)}
+          {/* {console.log("inside table jalan")}
+          {console.log(products)} */}
           <TableHeader>
             <TableRow>
               <TableHead>ID</TableHead>
@@ -57,13 +63,12 @@ export const ProductManagementPage = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {console.log(products)}
-            {console.log(products)}
+            {/* {console.log(products)}
+            {console.log(products)} */}
             {products.map((singleProduct) => {
-              console.log(singleProduct);
+              // console.log(singleProduct);
               const { id, name, price, stock } = singleProduct;
-              console.log(id);
-
+              // console.log(id);
               return (
                 <TableRow>
                   <TableCell>{id}</TableCell>
@@ -78,7 +83,6 @@ export const ProductManagementPage = () => {
                 </TableRow>
               );
             })}
-            {[1, 2, 3].map((single) => console.log(single))}
           </TableBody>
         </Table>
       </AdminLayout>
