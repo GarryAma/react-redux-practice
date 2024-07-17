@@ -17,10 +17,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Toast, ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
+import { axiosInstance } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 
 const CreateProductFormSchema = z.object({
   name: z
@@ -30,23 +34,57 @@ const CreateProductFormSchema = z.object({
 
   price: z.coerce.number().min(1, "invalid price - under $ 1 AUD"),
   stock: z.coerce.number().min(1, "stock cant be 0"),
-  imageUrl: z.string().url("use a valid URL"),
+  image: z.string().url("use a valid URL"),
 });
 
 export const CreateProductPage = () => {
+  const [isPressed, setIsPressed] = useState(false);
+  const navigate = useNavigate();
+
   const form = useForm({
     defaultValues: {
       name: "",
       price: 0,
       stock: 0,
-      imageUrl: "",
+      image: "",
     },
     resolver: zodResolver(CreateProductFormSchema),
     reValidateMode: "onSubmit",
   });
 
-  const handleCreateProduct = (allValues) => {
-    console.log(allValues);
+  console.log(form);
+  console.log(navigate);
+
+  const { toast } = useToast();
+
+  const handleCreateProduct = async (allValues) => {
+    setIsPressed((currentState) => !currentState);
+    try {
+      const response = await axiosInstance.post("/products", allValues);
+      console.log(response);
+
+      toast({
+        title: "Successfully Added ",
+        description: "Product is in database now",
+        action: (
+          <ToastAction
+            altText="oke"
+            onClick={() => navigate("/admin/products")}
+          >
+            OK
+          </ToastAction>
+        ),
+      });
+
+      //   form.reset();
+
+      //   navigate("/admin/products");
+    } catch (error) {
+      console.log(error);
+      console.log(error.message);
+    } finally {
+      setIsPressed(true);
+    }
   };
 
   return (
@@ -58,7 +96,7 @@ export const CreateProductPage = () => {
         >
           <Card>
             <CardHeader>
-              <CardTitle>Add New Product</CardTitle>
+              <CardTitle className="font-bold">Add New Product</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col space-y-7">
               <FormField
@@ -111,7 +149,7 @@ export const CreateProductPage = () => {
               />
               <FormField
                 control={form.control}
-                name="imageUrl"
+                name="image"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Product Image :</FormLabel>
@@ -127,7 +165,12 @@ export const CreateProductPage = () => {
               />
             </CardContent>
             <CardFooter>
-              <Button className="w-full" variant="default" type="submit">
+              <Button
+                disabled={isPressed}
+                className="w-full"
+                variant="default"
+                type="submit"
+              >
                 Add Product
               </Button>
             </CardFooter>

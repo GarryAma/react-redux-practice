@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import { IoAdd, IoCart, IoPerson, IoPricetag } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
+import { Toaster } from "../ui/toaster";
 
 const SideBarItem = (props) => {
   const { icon, text } = props;
@@ -63,6 +64,7 @@ export const AdminLayout = ({
             {rightSection}
           </div>
           {children}
+          <Toaster />
         </main>
       </div>
     </div>
