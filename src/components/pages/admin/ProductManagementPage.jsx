@@ -1,5 +1,7 @@
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Pagination,
   PaginationContent,
@@ -17,7 +19,7 @@ import { axiosInstance } from "@/lib/axios";
 import { ChevronLeft, ChevronRight, Ellipsis } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { IoAdd } from "react-icons/io5";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export const ProductManagementPage = () => {
   const [products, setProducts] = useState([]);
@@ -26,6 +28,9 @@ export const ProductManagementPage = () => {
   const [hasNextPage, setHasNextPage] = useState(false);
   // console.log(hasNextPage);
 
+  const [productName, setProductName] = useState("");
+  // console.log(productName);
+  // console.log(searchParams.get("search"));
   // console.log("this render");
 
   const handleNextPage = () => {
@@ -35,11 +40,17 @@ export const ProductManagementPage = () => {
   };
 
   const handlePreviousPage = () => {
-    if (Number(searchParams.get("halaman")) > 1) {
-      searchParams.set("halaman", Number(searchParams.get("halaman")) - 1);
+    searchParams.set("halaman", Number(searchParams.get("halaman")) - 1);
+    setSearchParams(searchParams);
+  };
+
+  const searchProduct = () => {
+    if (productName) {
+      searchParams.set("search", productName);
       setSearchParams(searchParams);
     } else {
-      alert("sudah ada di halaman 1");
+      searchParams.delete("search");
+      setSearchParams(searchParams);
     }
   };
 
@@ -52,6 +63,9 @@ export const ProductManagementPage = () => {
           // _limit: 5, =>if we use _page we're not allowed to use _limit anymore(json-server), we must use _per_page(json-server)
           _per_page: 5,
           _page: Number(searchParams.get("halaman")),
+          name: searchParams.get("search"),
+          // _page: Number(searchParams.get("halaman")),
+          // name: productName,
         },
       });
       // console.log(response.data);
@@ -69,7 +83,7 @@ export const ProductManagementPage = () => {
       setSearchParams(searchParams);
     }
     fetchProducts();
-  }, [searchParams.get("halaman")]);
+  }, [searchParams.get("halaman"), searchParams.get("search")]);
 
   return (
     <>
@@ -79,12 +93,25 @@ export const ProductManagementPage = () => {
         title="Products Management"
         description="Manage our products"
         rightSection={
-          <Button>
-            <IoAdd className="h-4 w-4 mr-2" />
-            Add Product
-          </Button>
+          <Link to={"/admin/products/create"}>
+            <Button>
+              <IoAdd className="h-4 w-4 mr-2" />
+              Add Product
+            </Button>
+          </Link>
         }
       >
+        <div className="mb-6 ">
+          <div className="flex gap-5 justify-center">
+            <Input
+              className="max-w-[400px]"
+              placeholder="Search Products name ..."
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+            />
+            <Button onClick={searchProduct}>search</Button>
+          </div>
+        </div>
         <Table className="p-2 border border-collapse rounded-md">
           {/* {console.log("inside table jalan")}
           {console.log(products)} */}
@@ -153,4 +180,5 @@ export const ProductManagementPage = () => {
   );
 };
 
+//NOTE!!!!!!!
 //why do we use useSearchParams?because it persist the state,so when we refresh, it will stay on the current page and it doenst reset state!!unlike useState,it will reset the state so it will come back to initial state!!

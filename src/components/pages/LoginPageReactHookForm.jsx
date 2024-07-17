@@ -44,7 +44,7 @@ export const LoginPageReactHookForm = () => {
     reValidateMode: "onSubmit",
   });
 
-  // console.log(form);
+  console.log(form);
 
   const handleLogin = (values) => {
     console.log(values);
@@ -82,7 +82,7 @@ export const LoginPageReactHookForm = () => {
                 control={form.control}
                 name="password"
                 render={(jajal) => {
-                  // console.log(jajal);
+                  console.log(jajal);
                   return (
                     <FormItem>
                       <FormLabel>Password :</FormLabel>

@@ -8,6 +8,7 @@ import { LoginPage } from "./components/pages/LoginPage";
 import { LoginPageReactHookForm } from "./components/pages/LoginPageReactHookForm";
 import { ProductDetailsPage } from "./components/pages/ProductDetailsPage";
 import { ProductManagementPage } from "./components/pages/admin/ProductManagementPage";
+import { CreateProductPage } from "./components/pages/admin/CreateProductPage";
 
 function App() {
   const { pathname } = useLocation();
@@ -21,7 +22,10 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPageReactHookForm />} />
         <Route path="/products/:productId" element={<ProductDetailsPage />} />
-        <Route path="/admin/products" element={<ProductManagementPage />} />
+        <Route path="/admin">
+          <Route path="products" element={<ProductManagementPage />} />
+          <Route path="products/create" element={<CreateProductPage />} />
+        </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {!pathname.startsWith("/admin") ? <Footer /> : null}
