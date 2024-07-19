@@ -3,7 +3,7 @@ import { Toast, ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import { axiosInstance } from "@/lib/axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProductForm } from "@/components/forms/ProductForm";
 
 export const CreateProductPage = () => {
