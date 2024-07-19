@@ -189,46 +189,25 @@
       "image": "https://dqp736wsu6w3m.cloudfront.net/s3bucket/w1000/looks/1390/xzcxwa.jpg"
     },
     {
-      "id": "e63d",
-      "name": "test image",
-      "price": 80,
+      "id": "0c71",
+      "name": "Oppo",
+      "price": 699,
+      "stock": 8,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqXHpP5vk6_VtvGSRHNjD01oYkJRymwf9erQ&s"
+    },
+    {
+      "id": "a7db",
+      "name": "Campos",
+      "price": 29,
+      "stock": 10,
+      "image": "https://mycoffeeshop.com.au/cdn/shop/products/Campos-Superior-Coffee-Beans_1200x.png?v=1699484454"
+    },
+    {
+      "id": "6a75",
+      "name": "Vittoria Coffee",
+      "price": 19,
       "stock": 5,
-      "image": "https://dqp736wsu6w3m.cloudfront.net/s3bucket/w1000/looks/1390/xzcxwa.jpg"
-    },
-    {
-      "id": "1c8c",
-      "name": "test image",
-      "price": 50,
-      "stock": 2,
-      "image": "https://dqp736wsu6w3m.cloudfront.net/s3bucket/w1000/looks/1390/xzcxwa.jpg"
-    },
-    {
-      "id": "2d55",
-      "name": "test",
-      "price": 23,
-      "stock": 2,
-      "image": "https://dqp736wsu6w3m.cloudfront.net/s3bucket/w1000/looks/1390/xzcxwa.jpg"
-    },
-    {
-      "id": "fc48",
-      "name": "test test",
-      "price": 35,
-      "stock": 2,
-      "image": "https://dqp736wsu6w3m.cloudfront.net/s3bucket/w1000/looks/1390/xzcxwa.jpg"
-    },
-    {
-      "id": "4790",
-      "name": "test test",
-      "price": 35,
-      "stock": 2,
-      "image": "https://dqp736wsu6w3m.cloudfront.net/s3bucket/w1000/looks/1390/xzcxwa.jpg"
-    },
-    {
-      "id": "4a1d",
-      "name": "test3",
-      "price": 100,
-      "stock": 2,
-      "image": "https://dqp736wsu6w3m.cloudfront.net/s3bucket/w1000/looks/1390/xzcxwa.jpg"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2K--1d4tko6yOS9Pob62wocw36PI7cZ0CpQ&s"
     }
   ]
 }

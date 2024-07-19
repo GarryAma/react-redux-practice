@@ -10,6 +10,7 @@ import { ProductDetailsPage } from "./components/pages/ProductDetailsPage";
 import { ProductManagementPage } from "./components/pages/admin/ProductManagementPage";
 import { CreateProductPage } from "./components/pages/admin/CreateProductPage";
 import { ToastProvider } from "./components/ui/toast";
+import { EditProductPage } from "./components/pages/admin/EditProductPage";
 
 function App() {
   const { pathname } = useLocation();
@@ -27,6 +28,7 @@ function App() {
           <Route path="/admin">
             <Route path="products" element={<ProductManagementPage />} />
             <Route path="products/create" element={<CreateProductPage />} />
+            <Route path="products/edit" element={<EditProductPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
