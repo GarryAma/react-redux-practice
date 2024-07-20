@@ -37,13 +37,15 @@ export const ProductForm = ({
   isPressed,
   buttonText,
   cardTitle,
+  singleProduct,
 }) => {
+  console.log(singleProduct);
   const form = useForm({
     defaultValues: {
-      name: "",
-      price: 0,
-      stock: 0,
-      image: "",
+      name: singleProduct?.name || "",
+      price: singleProduct?.price || 0,
+      stock: singleProduct?.stock || 0,
+      image: singleProduct?.image || "",
     },
     resolver: zodResolver(productFormSchema),
     reValidateMode: "onSubmit",

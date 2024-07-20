@@ -1,7 +1,6 @@
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Pagination,
   PaginationContent,
@@ -16,13 +15,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { axiosInstance } from "@/lib/axios";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Edit2Icon,
-  Edit3Icon,
-  Ellipsis,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Edit3Icon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { Link, useSearchParams } from "react-router-dom";

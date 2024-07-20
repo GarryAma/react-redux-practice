@@ -53,9 +53,7 @@ export const ProductDetailsPage = () => {
     setIsLoading(true);
     try {
       const response = await axiosInstance.get(`/products/${productId}`);
-      const response2 = await axiosInstance.get(`/products/3`);
-      console.log(response2.data);
-      //   console.log(response.≈data);
+
       setProduct(response.data);
     } catch (error) {
       console.log(error.message);
