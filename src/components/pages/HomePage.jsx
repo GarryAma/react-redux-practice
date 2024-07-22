@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ProductCard } from "../ProductCard";
-import axios from "axios";
 import { axiosInstance } from "@/lib/axios";
-import { Button } from "../ui/button";
 import { Spinner } from "../Spinner";
-import { Skeleton } from "../ui/skeleton";
 
 export const HomePage = () => {
   const [products, setProducts] = useState([]);

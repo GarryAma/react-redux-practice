@@ -1,6 +1,7 @@
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Pagination,
   PaginationContent,
@@ -14,11 +15,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ToastAction } from "@/components/ui/toast";
+import { toast } from "@/components/ui/use-toast";
 import { axiosInstance } from "@/lib/axios";
-import { ChevronLeft, ChevronRight, Edit3Icon } from "lucide-react";
+import { ChevronLeft, ChevronRight, Edit3Icon, Trash } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { IoAdd } from "react-icons/io5";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 export const ProductManagementPage = () => {
   const [products, setProducts] = useState([]);
@@ -31,6 +34,8 @@ export const ProductManagementPage = () => {
   // console.log(productName);
   // console.log(searchParams.get("search"));
   // console.log("this render");
+
+  const navigate = useNavigate();
 
   const handleNextPage = () => {
     searchParams.set("halaman", Number(searchParams.get("halaman")) + 1);
@@ -72,6 +77,34 @@ export const ProductManagementPage = () => {
       setProducts(response.data.data);
     } catch (error) {
       console.log(error.message);
+    }
+  };
+
+  const handleDeleteProduct = async (productId) => {
+    const confirmation = confirm(
+      "Are you sure you want to delete this product?"
+    );
+
+    if (!confirmation) return;
+
+    try {
+      const response = await axiosInstance.delete(`/products/${productId}`);
+      console.log(response);
+      toast({
+        title: "Successfully Deleted ",
+        description: `${response.data.name} has been deleted from database`,
+        action: (
+          <ToastAction
+            altText="oke"
+            onClick={() => navigate(`/admin/products`)}
+          >
+            OK
+          </ToastAction>
+        ),
+      });
+      fetchProducts();
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -137,15 +170,25 @@ export const ProductManagementPage = () => {
                   <TableCell>{price}</TableCell>
                   <TableCell>{stock}</TableCell>
                   <TableCell>
-                    <Link to={`/admin/products/edit/${id}`}>
+                    <div className="flex gap-2">
+                      <Link to={`/admin/products/edit/${id}`}>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="hover:text-green-500"
+                        >
+                          <Edit3Icon className="w-4 h-4" />
+                        </Button>
+                      </Link>
                       <Button
+                        onClick={() => handleDeleteProduct(singleProduct.id)}
                         variant="ghost"
                         size="icon"
-                        className="hover:text-green-500"
+                        className="hover:text-red-700"
                       >
-                        <Edit3Icon className="w-4 h-4" />
+                        <Trash className="w-4 h-4" />
                       </Button>
-                    </Link>
+                    </div>
                   </TableCell>
                 </TableRow>
               );

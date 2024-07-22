@@ -3,9 +3,9 @@
     {
       "id": "1",
       "image": "https://m.media-amazon.com/images/I/71b7dDXg7ZL._AC_UF1000,1000_QL80_.jpg",
-      "name": "Dr.Fish Saltwater",
-      "price": 79,
-      "stock": 15,
+      "name": "Dr.Fish Saltwater edited3",
+      "price": 78,
+      "stock": 13,
       "theme": "Fishing Reel"
     },
     {
@@ -159,55 +159,6 @@
       "price": 99.99,
       "stock": 12,
       "theme": "Fishing Cleats"
-    },
-    {
-      "id": "7efc",
-      "name": "Nuphy Keyboard",
-      "price": 45,
-      "stock": 7,
-      "image": "https://nuphy.com.au/cdn/shop/files/01.png?v=1685934396"
-    },
-    {
-      "id": "ce6a",
-      "name": "macbook pro",
-      "price": 2500,
-      "stock": 5,
-      "image": "https://images.squarespace-cdn.com/content/v1/5cbe6afdb9144966136eae6d/1637637934570-H7QRX70QOHTSKC8S46VH/apple-16inch-m1-macbook-pro-with-10-core-cpu-16-core-gpu-and-16-core-neural-engine-16gb-um-%26-1tb-hd-the-front-sydney-australia.jpg?format=1000w"
-    },
-    {
-      "id": "e334",
-      "name": "vape",
-      "price": 35,
-      "stock": 20,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUcZeds4mKLdxsKtMeBCtC0gl1MC5srH2NrQ&s"
-    },
-    {
-      "id": "90ce",
-      "name": "kaos oblong",
-      "price": 48,
-      "stock": 3,
-      "image": "https://dqp736wsu6w3m.cloudfront.net/s3bucket/w1000/looks/1390/xzcxwa.jpg"
-    },
-    {
-      "id": "0c71",
-      "name": "Oppo",
-      "price": 699,
-      "stock": 8,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqXHpP5vk6_VtvGSRHNjD01oYkJRymwf9erQ&s"
-    },
-    {
-      "id": "a7db",
-      "name": "Campos",
-      "price": 29,
-      "stock": 10,
-      "image": "https://mycoffeeshop.com.au/cdn/shop/products/Campos-Superior-Coffee-Beans_1200x.png?v=1699484454"
-    },
-    {
-      "id": "6a75",
-      "name": "Vittoria Coffee",
-      "price": 19,
-      "stock": 5,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2K--1d4tko6yOS9Pob62wocw36PI7cZ0CpQ&s"
     }
   ]
 }

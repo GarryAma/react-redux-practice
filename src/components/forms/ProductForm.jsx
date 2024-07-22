@@ -39,7 +39,7 @@ export const ProductForm = ({
   cardTitle,
   singleProduct,
 }) => {
-  console.log(singleProduct);
+  // console.log(singleProduct);
   const form = useForm({
     defaultValues: {
       name: singleProduct?.name || "",

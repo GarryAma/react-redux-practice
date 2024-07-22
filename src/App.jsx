@@ -4,7 +4,6 @@ import { CartPage } from "./components/pages/CartPage";
 import { HomePage } from "./components/pages/HomePage";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { NotFoundPage } from "./components/pages/NotFoundPage";
-import { LoginPage } from "./components/pages/LoginPage";
 import { LoginPageReactHookForm } from "./components/pages/LoginPageReactHookForm";
 import { ProductDetailsPage } from "./components/pages/ProductDetailsPage";
 import { ProductManagementPage } from "./components/pages/admin/ProductManagementPage";
