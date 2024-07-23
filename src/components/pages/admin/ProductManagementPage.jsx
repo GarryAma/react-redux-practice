@@ -1,5 +1,6 @@
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -35,7 +36,8 @@ export const ProductManagementPage = () => {
   // console.log(searchParams.get("search"));
   // console.log("this render");
 
-  const navigate = useNavigate();
+  const [selectedProductIds, setSelectedProductIds] = useState([]);
+  console.log(selectedProductIds);
 
   const handleNextPage = () => {
     searchParams.set("halaman", Number(searchParams.get("halaman")) + 1);
@@ -80,31 +82,37 @@ export const ProductManagementPage = () => {
     }
   };
 
+  const handleOnCheckedProduct = (productId, checked) => {
+    if (checked) {
+      setSelectedProductIds([...selectedProductIds, productId]);
+    } else {
+      const result = selectedProductIds.filter((item) => item !== productId);
+      setSelectedProductIds(result);
+    }
+  };
+
   const handleDeleteProduct = async (productId) => {
     const confirmation = confirm(
-      "Are you sure you want to delete this product?"
+      `Are you sure you want to delete ${selectedProductIds.length} this product?`
     );
 
     if (!confirmation) return;
 
+    //() => axiosInstance.delete(`/products/${singleId}`) this will execute when try catch
+    const deletePromisesArray = selectedProductIds.map(
+      (singleId) => () => axiosInstance.delete(`/products/${singleId}`)
+    );
+
+    console.log(deletePromisesArray);
+
+    // return;
     try {
-      const response = await axiosInstance.delete(`/products/${productId}`);
-      console.log(response);
-      toast({
-        title: "Successfully Deleted ",
-        description: `${response.data.name} has been deleted from database`,
-        action: (
-          <ToastAction
-            altText="oke"
-            onClick={() => navigate(`/admin/products`)}
-          >
-            OK
-          </ToastAction>
-        ),
-      });
-      fetchProducts();
+      await Promise.all(deletePromisesArray.map((single) => single()));
+      searchParams.set("halaman", Number(1));
+      setSearchParams(searchParams);
+      setSelectedProductIds([]);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 
@@ -125,12 +133,20 @@ export const ProductManagementPage = () => {
         title="Products Management"
         description="Manage our products"
         rightSection={
-          <Link to={"/admin/products/create"}>
-            <Button>
-              <IoAdd className="h-4 w-4 mr-2" />
-              Add Product
-            </Button>
-          </Link>
+          <div className="flex gap-2">
+            {selectedProductIds.length ? (
+              <Button onClick={handleDeleteProduct} variant="destructive">
+                Delete {selectedProductIds.length} Products
+              </Button>
+            ) : null}
+
+            <Link to={"/admin/products/create"}>
+              <Button>
+                <IoAdd className="h-4 w-4 mr-2" />
+                Add Product
+              </Button>
+            </Link>
+          </div>
         }
       >
         <div className="mb-6 ">
@@ -149,6 +165,7 @@ export const ProductManagementPage = () => {
           {console.log(products)} */}
           <TableHeader>
             <TableRow>
+              <TableHead></TableHead>
               <TableHead>ID</TableHead>
               <TableHead>Product Name</TableHead>
               <TableHead>Price</TableHead>
@@ -165,6 +182,14 @@ export const ProductManagementPage = () => {
               // console.log(id);
               return (
                 <TableRow key={i}>
+                  <TableCell>
+                    <Checkbox
+                      onCheckedChange={(checked) =>
+                        handleOnCheckedProduct(id, checked)
+                      }
+                      checked={selectedProductIds.includes(id)}
+                    />
+                  </TableCell>
                   <TableCell>{id}</TableCell>
                   <TableCell>{name}</TableCell>
                   <TableCell>{price}</TableCell>
@@ -180,14 +205,14 @@ export const ProductManagementPage = () => {
                           <Edit3Icon className="w-4 h-4" />
                         </Button>
                       </Link>
-                      <Button
-                        onClick={() => handleDeleteProduct(singleProduct.id)}
+                      {/* <Button
+                        onClick={() => handleDeleteProduct(id)}
                         variant="ghost"
                         size="icon"
                         className="hover:text-red-700"
                       >
                         <Trash className="w-4 h-4" />
-                      </Button>
+                      </Button> */}
                     </div>
                   </TableCell>
                 </TableRow>
