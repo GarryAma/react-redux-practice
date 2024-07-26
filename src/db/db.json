@@ -159,6 +159,20 @@
       "price": 99.99,
       "stock": 12,
       "theme": "Fishing Cleats"
+    },
+    {
+      "id": "4e78",
+      "name": "test",
+      "price": 123,
+      "stock": 10,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTCJkOFkgdOh3Ov8BDxjk8DqG6R6nHH7_1A&s"
+    }
+  ],
+  "users": [
+    {
+      "id": "b638",
+      "username": "garry",
+      "password": "garry2311"
     }
   ]
 }

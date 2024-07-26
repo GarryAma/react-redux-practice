@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import { ProductCard } from "../ProductCard";
 import { axiosInstance } from "@/lib/axios";
 import { Spinner } from "../Spinner";
+import { useSelector } from "react-redux";
 
 export const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsloading] = useState(false);
 
+  const userSelector = useSelector((state) => {
+    console.log(state);
+    return state.user;
+  });
+  console.log(userSelector);
   // fetch products data once when home page is first mounted
   useEffect(() => {
     fetchProducts();
@@ -29,6 +35,7 @@ export const HomePage = () => {
   //array of jsx -> array contains jsx's/components, if rendered, the "[" and "]" isnt included/gone
   const arrayOfJsx = products.map((singleData) => (
     <ProductCard
+      key={singleData.id}
       id={singleData.id}
       image={singleData.image}
       name={singleData.name}

@@ -37,7 +37,7 @@ export const ProductManagementPage = () => {
   // console.log("this render");
 
   const [selectedProductIds, setSelectedProductIds] = useState([]);
-  console.log(selectedProductIds);
+  // console.log(selectedProductIds);
 
   const handleNextPage = () => {
     searchParams.set("halaman", Number(searchParams.get("halaman")) + 1);

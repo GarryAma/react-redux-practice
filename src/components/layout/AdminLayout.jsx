@@ -64,7 +64,7 @@ export const AdminLayout = ({
             {rightSection}
           </div>
           {children}
-          <Toaster />
+          {/* <Toaster /> */}
         </main>
       </div>
     </div>

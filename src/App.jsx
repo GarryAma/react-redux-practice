@@ -10,6 +10,9 @@ import { ProductManagementPage } from "./components/pages/admin/ProductManagemen
 import { CreateProductPage } from "./components/pages/admin/CreateProductPage";
 import { ToastProvider } from "./components/ui/toast";
 import { EditProductPage } from "./components/pages/admin/EditProductPage";
+import { CounterPage } from "./components/pages/CounterPage";
+import { RegisterPage } from "./components/pages/RegisterPage";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   const { pathname } = useLocation();
@@ -23,6 +26,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<LoginPageReactHookForm />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/counter" element={<CounterPage />} />
           <Route path="/products/:productId" element={<ProductDetailsPage />} />
           <Route path="/admin">
             <Route path="products" element={<ProductManagementPage />} />
@@ -35,6 +40,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         {!pathname.startsWith("/admin") ? <Footer /> : null}
+        <Toaster />
       </>
     </ToastProvider>
   );
