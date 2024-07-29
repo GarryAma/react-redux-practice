@@ -63,7 +63,7 @@ export const RegisterPage = () => {
     const { username, password } = values;
     try {
       //biasanya pe-ngecekan exist user di check di backend,bukan di front end,tapi ini pengecualian karena kita pakai json server
-      const userResponse = await axiosInstance("/users", {
+      const userResponse = await axiosInstance.get("/users", {
         params: {
           username: values.username,
         },
@@ -75,6 +75,7 @@ export const RegisterPage = () => {
       }
 
       await axiosInstance.post("/users", { username, password });
+
       toast({
         title: "Success ",
         description: "Successfully registered",
@@ -95,7 +96,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <main className="px-4 container py-8 flex flex-col justify-center items-center max-w-screen-md h-[90vh] bg-red-100">
+    <main className="px-4 container py-8 flex flex-col justify-center items-center max-w-screen-md h-[90vh] ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleRegister)}
