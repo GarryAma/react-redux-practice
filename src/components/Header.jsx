@@ -4,13 +4,26 @@ import { Button } from "./ui/button";
 import { IoCart, IoHeart } from "react-icons/io5";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Header = () => {
   const userSelector = useSelector((state) => {
     // console.log("header printed");
+    console.log(state);
     return state.user;
   });
+
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    //1.remove localstorage
+    localStorage.removeItem("current-user");
+
+    //2.reset userSlice
+    dispatch({
+      type: "USER_LOGOUT",
+    });
+  };
 
   return (
     // <header className="h-16 border-b border-black-100 flex items-center justify-between px-8">
@@ -35,7 +48,12 @@ export const Header = () => {
         <Separator orientation="vertical" className="h-full" />
         <div className="flex space-x-2 items-center">
           {userSelector.username ? (
-            <p>Hello, {userSelector.username}</p>
+            <>
+              <p>Hello, {userSelector.username}</p>
+              <Button variant="destructive" onClick={handleLogOut}>
+                Logout
+              </Button>
+            </>
           ) : (
             <>
               <Button>sign in</Button>

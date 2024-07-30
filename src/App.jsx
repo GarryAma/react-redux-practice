@@ -27,7 +27,7 @@ function App() {
   const dispatch = useDispatch();
 
   const hydrateAuth = async () => {
-    console.log("hydrateAuth started");
+    // console.log("hydrateAuth started");
     try {
       const currentUser = localStorage.getItem("current-user");
 
@@ -46,25 +46,25 @@ function App() {
     } catch (error) {
       console.log(error.message);
     } finally {
-      console.log("hydrateAuth completed");
+      // console.log("hydrateAuth completed");
       setIsHydrated(true);
     }
   };
 
   useEffect(() => {
-    console.log("useEffect called");
+    // console.log("useEffect called");
     setIsHydrated(false);
 
     hydrateAuth();
   }, []);
 
-  console.log("isHydrated", isHydrated);
+  // console.log("isHydrated", isHydrated);
 
   // if (!isHydrated) return <Spinner />;
 
   return (
     <>
-      {console.log(isHydrated)}
+      {/* {console.log(isHydrated)} */}
       {isHydrated ? (
         <ToastProvider>
           <>
