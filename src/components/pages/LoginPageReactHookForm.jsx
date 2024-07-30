@@ -23,6 +23,7 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { axiosInstance } from "@/lib/axios";
+import { useDispatch } from "react-redux";
 
 const loginFormSchema = z.object({
   username: z
@@ -35,6 +36,7 @@ const loginFormSchema = z.object({
 
 export const LoginPageReactHookForm = () => {
   const [isChecked, setIsCheched] = useState(false);
+  const dispatch = useDispatch();
 
   const form = useForm({
     defaultValues: {
@@ -48,10 +50,10 @@ export const LoginPageReactHookForm = () => {
   // console.log(form);
 
   const handleLogin = async (values) => {
-    const response = await axiosInstance.get("users", {
+    const response = await axiosInstance.get("/users", {
       params: {
         username: values.username,
-        password: values.password,
+        // password: values.password,
       },
     });
 
@@ -66,6 +68,19 @@ export const LoginPageReactHookForm = () => {
     }
 
     alert(`you are successfully logged in as ${response.data[0].username}`);
+
+    dispatch({
+      type: "USER_LOGGED_IN",
+      payload: {
+        username: response.data[0].username,
+        id: response.data[0].id,
+      },
+    });
+
+    //to persist redux store,if refreshed,it will keep id user
+    localStorage.setItem("current-user", response.data[0].id);
+
+    form.reset();
   };
 
   return (

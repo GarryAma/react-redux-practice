@@ -14,6 +14,7 @@ export const CreateProductPage = () => {
 
   const handleCreateProduct = async (allValues) => {
     setIsPressed((currentState) => !currentState);
+
     try {
       const response = await axiosInstance.post("/products", allValues);
       console.log(response);

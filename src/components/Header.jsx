@@ -4,8 +4,14 @@ import { Button } from "./ui/button";
 import { IoCart, IoHeart } from "react-icons/io5";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
+  const userSelector = useSelector((state) => {
+    // console.log("header printed");
+    return state.user;
+  });
+
   return (
     // <header className="h-16 border-b border-black-100 flex items-center justify-between px-8">
     <header className="h-16 border-b border-black-100 flex items-center justify-between px-8">
@@ -27,9 +33,15 @@ export const Header = () => {
           </Button>
         </div>
         <Separator orientation="vertical" className="h-full" />
-        <div className="flex space-x-2">
-          <Button>sign in</Button>
-          <Button variant="outline">sign up</Button>
+        <div className="flex space-x-2 items-center">
+          {userSelector.username ? (
+            <p>Hello, {userSelector.username}</p>
+          ) : (
+            <>
+              <Button>sign in</Button>
+              <Button variant="outline">sign up</Button>
+            </>
+          )}
         </div>
       </div>
     </header>
