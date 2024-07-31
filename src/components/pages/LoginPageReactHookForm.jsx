@@ -24,6 +24,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { axiosInstance } from "@/lib/axios";
 import { useDispatch } from "react-redux";
+import { GuestPage } from "../guard/GuestPage";
 
 const loginFormSchema = z.object({
   username: z
@@ -84,80 +85,82 @@ export const LoginPageReactHookForm = () => {
   };
 
   return (
-    <main className="px-4 container py-8 flex flex-col justify-center items-center max-w-screen-md h-[90vh]">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleLogin)}
-          className="w-full max-w-[540px]"
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Welcome back ...</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username :</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      <li>username must between 3 and 10 chars</li>
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={(jajal) => {
-                  // console.log(jajal);
-                  return (
+    <GuestPage>
+      <main className="px-4 container py-8 flex flex-col justify-center items-center max-w-screen-md h-[90vh]">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleLogin)}
+            className="w-full max-w-[540px]"
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Welcome back ...</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-4">
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password :</FormLabel>
+                      <FormLabel>Username :</FormLabel>
                       <FormControl>
-                        <Input
-                          type={isChecked ? "text" : "password"}
-                          {...jajal.field}
-                        />
+                        <Input {...field} />
                       </FormControl>
                       <FormDescription>
-                        <li>password must be 8 chars or more</li>
+                        <li>username must between 3 and 10 chars</li>
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
-                  );
-                }}
-              />
-              <div className="flex items-center space-x-2">
-                <Label htmlFor="show password">Show Password:</Label>
-                <Checkbox
-                  id="show password"
-                  onCheckedChange={(current) => {
-                    setIsCheched(current);
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={(jajal) => {
+                    // console.log(jajal);
+                    return (
+                      <FormItem>
+                        <FormLabel>Password :</FormLabel>
+                        <FormControl>
+                          <Input
+                            type={isChecked ? "text" : "password"}
+                            {...jajal.field}
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          <li>password must be 8 chars or more</li>
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    );
                   }}
                 />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <div className="flex flex-col space-y-4 w-full">
-                {/* disabled={!form.formState.isValid}  */}
-                <Button type="submit">Login</Button>
-                <Button
-                  variant="link"
-                  className="hover:font-light hover:text-green-900"
-                >
-                  Sign up
-                </Button>
-              </div>
-            </CardFooter>
-          </Card>
-        </form>
-      </Form>
-    </main>
+                <div className="flex items-center space-x-2">
+                  <Label htmlFor="show password">Show Password:</Label>
+                  <Checkbox
+                    id="show password"
+                    onCheckedChange={(current) => {
+                      setIsCheched(current);
+                    }}
+                  />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <div className="flex flex-col space-y-4 w-full">
+                  {/* disabled={!form.formState.isValid}  */}
+                  <Button type="submit">Login</Button>
+                  <Button
+                    variant="link"
+                    className="hover:font-light hover:text-green-900"
+                  >
+                    Sign up
+                  </Button>
+                </div>
+              </CardFooter>
+            </Card>
+          </form>
+        </Form>
+      </main>
+    </GuestPage>
   );
 };

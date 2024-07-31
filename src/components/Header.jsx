@@ -56,8 +56,12 @@ export const Header = () => {
             </>
           ) : (
             <>
-              <Button>sign in</Button>
-              <Button variant="outline">sign up</Button>
+              <Link to="/login">
+                <Button>sign in</Button>
+              </Link>
+              <Link to="/register">
+                <Button variant="outline">sign up</Button>
+              </Link>
             </>
           )}
         </div>

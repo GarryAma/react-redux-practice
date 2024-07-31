@@ -26,6 +26,7 @@ import { axiosInstance } from "@/lib/axios";
 import { toast } from "../ui/use-toast";
 import { Toast, ToastAction } from "../ui/toast";
 import { Toaster } from "../ui/toaster";
+import { GuestPage } from "../guard/GuestPage";
 
 const registerFormSchema = z
   .object({
@@ -96,88 +97,90 @@ export const RegisterPage = () => {
   };
 
   return (
-    <main className="px-4 container py-8 flex flex-col justify-center items-center max-w-screen-md h-[90vh] ">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleRegister)}
-          className="w-full max-w-[540px]"
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Create new account</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username :</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      <li>username must between 3 and 10 chars</li>
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={(jajal) => {
-                  //   console.log(jajal);
-                  return (
+    <GuestPage>
+      <main className="px-4 container py-8 flex flex-col justify-center items-center max-w-screen-md h-[90vh] ">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleRegister)}
+            className="w-full max-w-[540px]"
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Create new account</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-4">
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password :</FormLabel>
+                      <FormLabel>Username :</FormLabel>
                       <FormControl>
-                        <Input type="password" {...jajal.field} />
+                        <Input {...field} />
                       </FormControl>
                       <FormDescription>
-                        <li>password must be 8 chars or more</li>
+                        <li>username must between 3 and 10 chars</li>
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
-                  );
-                }}
-              />
-              <FormField
-                control={form.control}
-                name="repeatPassword"
-                render={(jajal) => {
-                  //   console.log(jajal);
-                  return (
-                    <FormItem>
-                      <FormLabel>Repeat Password :</FormLabel>
-                      <FormControl>
-                        <Input type="password" {...jajal.field} />
-                      </FormControl>
-                      <FormDescription>
-                        <li>Password must match</li>
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
-              />
-            </CardContent>
-            <CardFooter>
-              <div className="flex flex-col space-y-4 w-full">
-                {/* disabled={!form.formState.isValid}  */}
-                <Button type="submit">Register</Button>
-                <Button
-                  variant="link"
-                  className="hover:font-light hover:text-green-900 transition-all duration-300"
-                >
-                  Login instead
-                </Button>
-              </div>
-            </CardFooter>
-          </Card>
-        </form>
-        {/* <Toaster /> */}
-      </Form>
-    </main>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={(jajal) => {
+                    //   console.log(jajal);
+                    return (
+                      <FormItem>
+                        <FormLabel>Password :</FormLabel>
+                        <FormControl>
+                          <Input type="password" {...jajal.field} />
+                        </FormControl>
+                        <FormDescription>
+                          <li>password must be 8 chars or more</li>
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="repeatPassword"
+                  render={(jajal) => {
+                    //   console.log(jajal);
+                    return (
+                      <FormItem>
+                        <FormLabel>Repeat Password :</FormLabel>
+                        <FormControl>
+                          <Input type="password" {...jajal.field} />
+                        </FormControl>
+                        <FormDescription>
+                          <li>Password must match</li>
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+              </CardContent>
+              <CardFooter>
+                <div className="flex flex-col space-y-4 w-full">
+                  {/* disabled={!form.formState.isValid}  */}
+                  <Button type="submit">Register</Button>
+                  <Button
+                    variant="link"
+                    className="hover:font-light hover:text-green-900 transition-all duration-300"
+                  >
+                    Login instead
+                  </Button>
+                </div>
+              </CardFooter>
+            </Card>
+          </form>
+          {/* <Toaster /> */}
+        </Form>
+      </main>
+    </GuestPage>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
+import { HasLoggedPage } from "../guard/HasLoggedPage";
 
 export const CartPage = () => {
-  return <div>CartPage</div>;
+  return <HasLoggedPage>CartPage</HasLoggedPage>;
 };
